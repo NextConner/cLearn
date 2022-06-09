@@ -1,1 +1,4 @@
 *.exe
+.vscode/tasks.json
+.vscode/settings.json
+simpleprg/getline/a.log

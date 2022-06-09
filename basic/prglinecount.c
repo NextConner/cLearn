@@ -1,28 +1,40 @@
 #include <stdio.h>
 
-void lineprint(char *arrpoi);
+void lineprint(char *parr[]);
 
 main()
 {
     char charray[100];
-    lineprint(charray);
+    char *parr[100];
+    lineprint(parr);
     printf("%s \n", charray);
     return 0;
 }
 
-void lineprint(char *arrpoi)
+void lineprint(char *parr[])
 {
     int c, nl;
     nl = 0;
+    char *tempp;
     while ((c = getchar()) != ';')
     {
         //字符换行
         if (c == '\n')
         {
-            ++nl;
+
+            *tempp++ = '\0';
+            parr[nl++] = tempp;
+            *tempp = '\0';
+        }
+        else
+        {
+            *tempp++ = c;
         }
         //写入原本字符，直接打印
-        *arrpoi++ = c;
     }
     printf("line count : %d \n", nl);
+    for (int i = 0; i < nl; i++)
+    {
+        printf("buf: %d = %s", i, parr[i]);
+    }
 }

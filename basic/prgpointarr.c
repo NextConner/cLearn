@@ -1,20 +1,23 @@
 #include <stdio.h>
 
+static int count = 0;
+
 int main(int argc, char const *argv[])
 {
 
 	char *buf[100];
-	char *bufp = buf;
 
-	// int c;
-	// int count = 0;
-	// while ((c = getchar()) != ';')
-	// {
-	// 	char a[100];
-	// 	char *ap = a;
-	// 	*bufp++ = c;
-	// }
-	add(buf);
+	int c;
+	int index = 0;
+	char *ap;
+	char a[100];
+	while ((c = getchar()) != ';')
+	{
+		a[index++] = c;
+	}
+	ap = a;
+	// add(buf);
+	buf[count++] = ap;
 	pr(buf);
 	return 0;
 }
@@ -23,12 +26,14 @@ void add(char *buf[])
 {
 	char *a = "hello";
 	char *b = "world";
-	buf[0] = a;
-	buf[1] = b;
+	buf[count++] = a;
+	buf[count++] = b;
 }
 
 void pr(char *buf[])
 {
-	printf("%s \n", buf[0]);
-	printf("%s \n", buf[1]);
+	for (int i = 0; i < count; i++)
+	{
+		printf("%s \n", buf[i]);
+	}
 }

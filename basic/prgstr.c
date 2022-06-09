@@ -16,41 +16,46 @@ void strreserve(char *s);
 //计算以t字符结尾的s字符中，t子串的位置
 int strend(char *s, char *t);
 
-main()
+//字符串任意位置匹配
+int strmatch(char *s, char *t);
+
+int strmatch(char *s, char *t)
 {
+	if (*s == '\0' || *t == '\0')
+	{
+		return -1;
+	}
 
-	char *scp;
-	char *tcp = "World";
-	strcp(scp, tcp, 3);
-	// tcp--;
-	// *tcp = "1";
-	printf("strcp :%s \n", scp);
-
-	char *scmp = "bello";
-	char *tcmp = "bd";
-	printf("%d \n", strcmp(scmp, tcmp, 3));
-
-	char cparr[20] = "Hello";
-	char *cparrpoi = cparr;
-	strcat(cparrpoi, tcp, 3);
-	printf("%s \n", cparrpoi);
-
-	// char cr[20];
-	// strreserve(cr);
-
-	char a[] = "hello";
-	char b[] = "lol";
-	char c[] = "lo";
-	printf("%d\n", strend(&c, &b));
-	printf("%d\n", strend(&b, &c));
+	if (*s == *t)
+	{
+		if (*s++ == *t++ && *t == '\0')
+		{
+			return 1;
+		}
+		return strmatch(s, t);
+	}
+	else
+	{
+		*s++;
+		return strmatch(s, t);
+	}
 }
 
 void strcp(char *s, char *t, int n)
 {
 
-	while (n-- >= 1)
+	if (n > 0)
 	{
-		*s++ = *t++;
+		while (n-- >= 1)
+		{
+			*s++ = *t++;
+		}
+		return;
+	}
+	else
+	{
+		while (*s++ = *t++)
+			;
 	}
 }
 
